@@ -52,11 +52,32 @@ class Company {
             return total + employee.calculateAnnualSalary();
         }, 0);
     };
+    // Task 5 - Implementing Promotions
+    promoteToManager(employee, teamSize) {
+        if (employee instanceof Manager) {
+            console.log(`${employee.name} is already a Manager.`)
+            return;
+        }
+        const manager = new Manager(
+            employee.name,
+            employee.id,
+            employee.department,
+            employee.salary,
+            teamSize
+        );
+        const index = this.employees.findIndex(emp => emp.id === employee.id);
+        if (index !== -1) {
+            this.employees[index] = manager;
+        }
+    }
 }
 const company = new Company("TechCorp");
 company.addEmployee(emp1);//"Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 company.addEmployee(mgr1); // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
-company.listEmployees();
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 172800 (assuming emp1 and mgr1 salaries)
+company.promoteToManager(emp1, 3);
+company.listEmployees();
+// Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
+
 
