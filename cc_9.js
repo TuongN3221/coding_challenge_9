@@ -28,7 +28,7 @@ class Manager extends Employee {
     };
     calculateBonus() {
         return this.salary * 12
-    }''
+    };
 };
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5);
 console.log(mgr1.getDetails()); // Expected output: "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
@@ -39,17 +39,24 @@ class Company {
     constructor(name) {
         this.name = name;
         this.employees = [];
-    }
+    };
     addEmployee(employee) {
         this.employees.push(employee);// Adds the employee class 
-    }
+    };
     listEmployees() {
         this.employees.forEach(employees => console.log(employees.getDetails()));
-    }// method to list all employee details
+    }; // method to list all employee details
+    // Task 4 - Implementing a Payroll System
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, employee) => {
+            return total + employee.calculateAnnualSalary();
+        }, 0);
+    };
 }
 const company = new Company("TechCorp");
 company.addEmployee(emp1);//"Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 company.addEmployee(mgr1); // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
 company.listEmployees();
-
+console.log(company.calculateTotalPayroll()); 
+// Expected output: 172800 (assuming emp1 and mgr1 salaries)
 
