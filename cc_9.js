@@ -1,3 +1,4 @@
+// Task 1 - Creating Employee Class
 class Employee {
     constructor(name, id, department, salary) {
         this.name = name;
